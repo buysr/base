@@ -1,4 +1,4 @@
-# Azure Policy evaluationDelay: 87% less Turtle
+# Azure Policy evaluationDelay: 87% less 🐢
 
 Before Azure Policy takes action via a deployIfNotExists effect, it can take some time. By default this is: PT10M (which means a default of 10 minutes)
 
