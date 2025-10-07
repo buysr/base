@@ -13,6 +13,11 @@ In a shared Private DNS Zone design you can’t create more than a single **pl-a
 
 The auth endpoint namespace is regional and reused (for example `westeurope.pl-auth.azuredatabricks.net`). If you deploy multiple workspaces in the same region, they must share the same **pl-auth** Private Endpoint and corresponding DNS records.
 
+Check out the diagrams below for a visual explanation:
+
+- [Single Private DNS Zone](#single-private-dns-zone)
+- [Centralized Private DNS Zone](#centralized-private-dns-zone)
+
 ### Option 1: Create a dedicated Azure Databricks workspace per region
 
 This is the Microsoft-recommended approach. [See the guidance on Microsoft Learn](https://learn.microsoft.com/en-us/azure/databricks/security/network/classic/private-link-standard?utm_source=chatgpt.com#step-4-create-a-private-endpoint-to-support-sso-for-web-browser-access).
@@ -73,6 +78,16 @@ In practice, traffic to the auth endpoint is served by Microsoft-operated infras
 > Only add shard labels that actually exist in your region (e.g., `-c2` may exist; `-c3` often does not in West Europe).
 
 Also ensure the workspace’s **`databricks_ui_api`** Private Endpoint is deployed in the workspace VNet and that its NIC is registered with the same `privatelink.azuredatabricks.net` zone. That gives you `adb-<id>.privatelink.azuredatabricks.net` → **private IP**.
+
+### Diagrams
+
+#### Single Private DNS Zone
+
+![Single Private DNS Zone](../assets/hybrid_setup-for-azure_databricks-pubic_auth-private_workspace-Single%20Private%20DNS%20Zone.drawio.png)
+
+#### Centralized Private DNS Zone
+
+![Centralized Private DNS Zone](../assets/hybrid_setup-for-azure_databricks-pubic_auth-private_workspace-Centralized%20Private%20DNS%20Zone.drawio.png)
 
 ## Quick troubleshooting (from a Windows VM)
 
