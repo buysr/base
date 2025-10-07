@@ -1,4 +1,4 @@
-# Databricks DNS Diaries: Public auth, Private workspace
+# Databricks DNS Diaries 📓 Public auth, Private workspace
 
 ## Short introduction
 
