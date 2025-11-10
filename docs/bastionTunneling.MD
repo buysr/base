@@ -1,5 +1,8 @@
 # Bastion Tunnel 🛣️ Vision: Local Access to Private Azure Resources
 
+> [!NOTE]  
+> I try to keep this documentation up to date as much as possible. If you find something that is outdated or incorrect, please open an issue or a pull request.
+
 Recently, I found myself in a situation where I could not create a proper solution to provide teams in Azure with access to their Landing Zone (especially Private Azure Resources). Some of the common solutions were not an option:
 
 - Client VPN.

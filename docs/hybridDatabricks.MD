@@ -1,5 +1,8 @@
 # Databricks DNS Diaries 📓 Public auth, Private workspace
 
+> [!NOTE]  
+> I try to keep this documentation up to date as much as possible. If you find something that is outdated or incorrect, please open an issue or a pull request.
+
 ## Short introduction
 
 Azure Databricks supports Private Endpoints. For a fully private setup, you typically deploy two Private Endpoints:

@@ -1,5 +1,8 @@
 # Buys Landing Page
 
+> [!NOTE]  
+> I try to keep this documentation up to date as much as possible. If you find something that is outdated or incorrect, please open an issue or a pull request.
+
 Welcome to the documentation of Buys! I write down:
 
 - Stuff I learn

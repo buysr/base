@@ -1,5 +1,8 @@
 # Azure Policy evaluationDelay: 87% less 🐢
 
+> [!NOTE]  
+> I try to keep this documentation up to date as much as possible. If you find something that is outdated or incorrect, please open an issue or a pull request.
+
 Before Azure Policy takes action via a deployIfNotExists effect, it can take some time. By default this is: PT10M (which means a default of 10 minutes)
 
 To accelerate this, you can adjust the **evaluationDelay** property inside the Azure Policy Definition. Checkout this [GitHub Issue](https://github.com/Azure/azure-policy/issues/1050).
