@@ -69,13 +69,14 @@ az network bastion tunnel --name <bastion-name> --resource-group <bastion-rg> --
 <!-- markdownlint-disable MD029 -->
 4. The Bastion Host creates a tunnel to the Linux jumpbox VM in the Landing Zone.
 5. The Linux jumpbox VM is Entra ID joined, so the user can authenticate using their Entra ID credentials.
-6. The Linux jumpbox VM forwards the traffic to the Private Azure Key Vault through the Private Endpoint.
-7. The Private Azure Key Vault responds to the request and sends the data back through the same path.
-8. The user configures the web browser to use a SOCKS5 proxy pointing to `localhost:<local-port>`.
-9. The user can now access Private Azure Resources through the SOCKS5 proxy configured in the web browser.
-10. When the user is done, close the tunnel by stopping the Azure CLI command.
-11. The user can remove the SOCKS5 proxy configuration from the web browser.
-12. Access is revoked when the JIT access time window expires, or the user manually removes their access in PIM.
+6. The Linux jumpbox VM has a Network Security Group (NSG) configured that allows outbound traffic to the tag AzureCloud.
+7. The Linux jumpbox VM forwards the traffic to the Private Azure Key Vault through the Private Endpoint.
+8. The Private Azure Key Vault responds to the request and sends the data back through the same path.
+9. The user configures the web browser to use a SOCKS5 proxy pointing to `localhost:<local-port>`.
+10. The user can now access Private Azure Resources through the SOCKS5 proxy configured in the web browser.
+11. When the user is done, close the tunnel by stopping the Azure CLI command.
+12. The user can remove the SOCKS5 proxy configuration from the web browser.
+13. Access is revoked when the JIT access time window expires, or the user manually removes their access in PIM.
 <!-- markdownlint-enable MD029 -->
 
 ## Conclusion
