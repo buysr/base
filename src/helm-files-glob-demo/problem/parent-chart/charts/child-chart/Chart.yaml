@@ -1,0 +1,4 @@
+apiVersion: v2
+name: child-chart
+description: Child chart with config files
+version: 1.0.0

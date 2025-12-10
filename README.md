@@ -20,3 +20,5 @@ Welcome to the documentation of Buys! I write down:
   Guidance on setting up Azure Databricks with a hybrid approach: private workspace access via Private Link, while using public endpoints for authentication. This setup can help reduce costs while maintaining security.
 - **[Bastion Tunnel 🛣️ Vision: local access to Private Azure Resources](./docs/bastionTunneling.MD)**  
   Ever wondered how to access a Azure Key Vault with a Private Endpoint from your local client web browser using Azure Bastion Tunneling? Press click to find out more!
+- **[🔍 Helm's .Files.Glob Limitation: Why Parent Charts Can't Read Subchart Files](./docs/helmFilesGlob.md)**  
+  A deep dive into why `.Files.Glob` from a parent chart cannot read configuration files stored in a subchart, and practical solutions to work around this Helm limitation.

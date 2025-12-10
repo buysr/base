@@ -1,0 +1,5 @@
+# Default values - can be overridden
+# But the main config comes from the configs/ directory files
+
+global:
+  environment: demo

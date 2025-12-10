@@ -1,0 +1,6 @@
+# Cache configuration  
+cache:
+  provider: "redis"
+  host: "redis.example.com"
+  port: 6379
+  ttl: 3600

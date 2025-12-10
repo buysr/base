@@ -1,0 +1,21 @@
+# Child chart creates a ConfigMap with all its config files
+# The parent chart can reference this ConfigMap by name
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: child-chart-configs
+  labels:
+    app.kubernetes.io/managed-by: child-chart
+  annotations:
+    description: |
+      This ConfigMap is created by the child-chart and contains
+      all configuration files from the configs/ directory.
+      Parent charts can mount or reference this ConfigMap.
+data:
+  # Individual config files
+  {{- include "child-chart.loadAllConfigs" . | nindent 2 }}
+  
+  # Merged config as single file
+  merged-config.yaml: |
+    {{- include "child-chart.mergedConfig" . | nindent 4 }}

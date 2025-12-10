@@ -1,0 +1,30 @@
+# Standalone Chart ConfigMap - Reads its own config files
+# THIS WORKS - .Files.Glob can access files in the same chart!
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: standalone-chart-configs
+  annotations:
+    description: "This ConfigMap successfully reads files using .Files.Glob"
+data:
+  # List all files found
+  _files_found: |
+    Config files loaded:
+    {{- include "standalone-chart.listConfigFiles" . | nindent 4 }}
+
+  # Merged configuration from all files
+  merged-config.yaml: |
+    {{- include "standalone-chart.loadConfigs" . | nindent 4 }}
+
+---
+# Individual config files as separate keys
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: standalone-chart-individual-configs
+data:
+  {{- range $path, $content := .Files.Glob "configs/*.yaml" }}
+  {{ base $path }}: |
+    {{- $content | toString | nindent 4 }}
+  {{- end }}

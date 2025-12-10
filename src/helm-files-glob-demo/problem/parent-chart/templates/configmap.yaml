@@ -1,0 +1,44 @@
+# Parent Chart ConfigMap - Attempts to read files from subchart
+# THIS WILL NOT WORK - .Files.Glob cannot access subchart files!
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parent-reads-subchart-files
+  annotations:
+    description: "This ConfigMap tries to read files from the subchart using .Files.Glob"
+data:
+  # Attempt 1: Direct path to subchart configs
+  # This will be EMPTY because .Files.Glob only sees files in THIS chart
+  {{- range $path, $content := .Files.Glob "charts/child-chart/configs/*.yaml" }}
+  {{ base $path }}: |
+{{ $content | indent 4 }}
+  {{- else }}
+  # NO FILES FOUND - .Files.Glob cannot access subchart files!
+  _error: "Glob 'charts/child-chart/configs/*.yaml' returned no files"
+  {{- end }}
+
+---
+# Let's also try other paths that might work (they won't)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parent-tries-other-paths
+data:
+  # Attempt 2: Relative path
+  attempt2_relative: |
+    Files found in 'configs/*.yaml':
+    {{- range $path, $_ := .Files.Glob "configs/*.yaml" }}
+    - {{ $path }}
+    {{- else }}
+    NONE - parent chart has no configs/ folder
+    {{- end }}
+  
+  # Attempt 3: All yaml files in chart
+  attempt3_all_yaml: |
+    All .yaml files in this chart:
+    {{- range $path, $_ := .Files.Glob "**/*.yaml" }}
+    - {{ $path }}
+    {{- else }}
+    NONE
+    {{- end }}

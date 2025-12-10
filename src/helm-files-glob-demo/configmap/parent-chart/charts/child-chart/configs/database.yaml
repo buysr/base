@@ -1,0 +1,7 @@
+# Database configuration
+database:
+  host: "postgres.example.com"
+  port: 5432
+  name: "myapp_db"
+  ssl_mode: "require"
+  max_connections: 100

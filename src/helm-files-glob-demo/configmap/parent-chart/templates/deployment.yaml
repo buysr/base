@@ -1,0 +1,61 @@
+# Parent chart uses the ConfigMap that the subchart created
+# The subchart reads its own files and exposes them via ConfigMap
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: parent-references-child-configmap
+  annotations:
+    description: |
+      This ConfigMap demonstrates that the parent can REFERENCE
+      the ConfigMap created by the subchart.
+      
+      The subchart reads its own files with .Files.Glob and
+      creates a ConfigMap. The parent can then mount or reference
+      that ConfigMap in its own resources.
+data:
+  info: |
+    The child-chart has created a ConfigMap named 'child-chart-configs'
+    which contains all the configuration files from the subchart.
+    
+    You can reference this ConfigMap in your deployments:
+    
+    volumes:
+      - name: child-configs
+        configMap:
+          name: child-chart-configs
+    
+    Or use it in environment variables:
+    
+    envFrom:
+      - configMapRef:
+          name: child-chart-configs
+
+---
+# Example: A Deployment that uses the subchart's ConfigMap
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-using-child-configs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+      - name: app
+        image: nginx:latest
+        volumeMounts:
+        - name: config-from-child
+          mountPath: /etc/config
+          readOnly: true
+      volumes:
+      # Mount the ConfigMap created by the child-chart
+      - name: config-from-child
+        configMap:
+          name: child-chart-configs

@@ -1,0 +1,5 @@
+apiVersion: v2
+name: standalone-chart
+description: Standalone chart that CAN read its own files (WORKS!)
+version: 1.0.0
+# NO dependencies - this is standalone

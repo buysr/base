@@ -1,0 +1,5 @@
+# Feature flags
+features:
+  new_ui: true
+  beta_api: false
+  dark_mode: true
